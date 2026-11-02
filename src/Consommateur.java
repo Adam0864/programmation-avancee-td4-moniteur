@@ -8,5 +8,6 @@ public class Consommateur extends Thread{
 
     public void run(){
         lettre = chMonitor.retirer();
+        System.out.println(lettre);
     }
 }
