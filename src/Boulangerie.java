@@ -1,3 +1,7 @@
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
+
 public  class Boulangerie {
 
     // plus prosaïquement, une boulangerie est une file d'attente de 20 cases
@@ -18,5 +22,10 @@ public  class Boulangerie {
     // on peut interroger le stock
     public  int getStock() {
         return queue.size() ;
+    }
+
+    // on ajoute simplement le pain empoisonné à la file d'attente
+    public  void deposePainEmpoisonne() {
+        queue.add(Pain.PAIN_EMPOISONNE) ;
     }
 }

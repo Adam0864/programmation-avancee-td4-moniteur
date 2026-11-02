@@ -1,4 +1,13 @@
-public  class Mangeur  implements Runnable {
+import java.util.Random;
+
+public class Mangeur implements Runnable {
+    private Boulangerie boulangerie;
+    private Random rand;
+
+    public Mangeur(Boulangerie parBoulangerie,Random parRand){
+        boulangerie = parBoulangerie;
+        rand = parRand;
+    }
 
     public  void run() {
 
@@ -9,8 +18,15 @@ public  class Mangeur  implements Runnable {
                 Thread.sleep(rand.nextInt(1000)) ;
                 Pain pain = boulangerie.achete() ;
                 if (pain != null) {
-                    System.out.println("[" + Thread.currentThread().getName() +  "]" +
-                            "[" + boulangerie.getStock() +  "] miam miam") ;
+
+                    if (pain == Pain.PAIN_EMPOISONNE) {
+                        System.out.println("Je meurs !") ;
+                        Thread.currentThread().interrupt() ;
+                    }  else {
+                        System.out.println("[" + Thread.currentThread().getName() +  "]" +
+                                "[" + boulangerie.getStock() +  "] miam miam") ;
+                    }
+
                 }  else {
                     System.out.println("[" + Thread.currentThread().getName() +  "]" +
                             "[" + boulangerie.getStock() +  "] j'ai faim") ;
@@ -18,7 +34,6 @@ public  class Mangeur  implements Runnable {
             }
 
         }  catch (InterruptedException e) {
-            System.out.println("[" + Thread.currentThread().getName() +  "] je m'arrête") ;
         }
     }
 }

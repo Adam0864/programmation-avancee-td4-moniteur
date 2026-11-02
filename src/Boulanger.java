@@ -1,4 +1,9 @@
 public  class Boulanger  implements Runnable {
+    private Boulangerie boulangerie;
+
+    public Boulanger(Boulangerie parBoulangerie){
+        boulangerie = parBoulangerie;
+    }
 
     public  void run() {
 
